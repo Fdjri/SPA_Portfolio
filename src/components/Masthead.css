@@ -1,0 +1,137 @@
+.masthead {
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.4rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.weather-detail {
+  font-family: var(--font-serif);
+  font-style: italic;
+  text-transform: none;
+  font-size: 0.9rem;
+  letter-spacing: 0;
+}
+
+.date-display {
+  font-weight: 600;
+}
+
+.masthead-title-container {
+  margin: 1rem 0;
+}
+
+.masthead-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin: 0;
+  line-height: 1;
+}
+
+.masthead-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  border-top: 3px double var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.4rem 0;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.tagline {
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.price {
+  font-style: normal;
+}
+
+.stock-ticker {
+  border-top: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.4rem 0;
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.ticker-content:hover {
+  animation-play-state: paused;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.ticker-symbol {
+  font-weight: 700;
+}
+
+.ticker-arrow {
+  font-size: 0.65rem;
+}
+
+.ticker-divider {
+  color: var(--border-color);
+  margin: 0 0.75rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 900px) {
+  .masthead-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .weather-widget {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

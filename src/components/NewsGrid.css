@@ -1,0 +1,507 @@
+.news-grid-section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.section-header h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Machinery Registry (Retained) */
+.machinery-registry {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--text-color);
+  background-color: rgba(0, 0, 0, 0.02);
+  box-shadow: inset 0 0 0 4px var(--bg-color), inset 0 0 0 5px var(--border-color);
+}
+
+.registry-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.registry-description {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  color: #333;
+}
+
+.registry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .registry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .registry-grid {
+    grid-template-columns: 1fr;
+    border: none;
+  }
+}
+
+.registry-category {
+  border: 1px dashed var(--text-color);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  position: relative;
+}
+
+.registry-category::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--border-color);
+  pointer-events: none;
+}
+
+.category-name {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  z-index: 1;
+}
+
+.tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  z-index: 1;
+}
+
+.tool-badge {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--text-color);
+  padding: 0.2rem 0.5rem;
+  text-transform: uppercase;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+/* Authentic Newspaper Project Layouts */
+
+/* Section Header Structure */
+.category-section {
+  margin-bottom: 3.5rem;
+}
+
+.category-header {
+  border-top: 4px solid var(--text-color);
+  padding-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-title {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+}
+
+/* 1. DIGITAL ARCHITECTURE & WEB SYSTEMS */
+.web-systems-grid {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  gap: 1.5rem;
+}
+
+.web-col-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-left {
+  border-right: 1px solid var(--text-color);
+  padding-right: 1.5rem;
+}
+
+.side-right {
+  border-left: 1px solid var(--text-color);
+  padding-left: 1.5rem;
+}
+
+.web-col-center {
+  padding: 0 0.5rem;
+}
+
+.featured-web-article {
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-image-slot {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 1px solid var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.featured-headline {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.featured-summary {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.read-more-link {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  text-decoration: underline;
+  text-decoration-color: var(--border-color);
+  display: inline-block;
+  margin-top: 0.2rem;
+}
+
+.bold-link {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.read-more-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #666;
+  display: inline-block;
+  margin-top: 0.2rem;
+}
+
+.text-article {
+  margin-bottom: 1.5rem;
+}
+
+.headline-link {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.headline-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.small-headline {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+}
+
+.snippet {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+}
+
+.article-divider {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  width: 50%;
+}
+
+@media (max-width: 992px) {
+  .web-systems-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .web-col-center {
+    order: 1; /* Center column (featured) stacks first */
+    padding: 0;
+    border-bottom: 3px double var(--text-color);
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .side-left {
+    order: 2;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
+  
+  .side-right {
+    order: 3;
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+.view-all-container {
+  margin-top: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.view-all-link {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--bg-color);
+  background-color: var(--text-color);
+  padding: 0.5rem 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+
+.view-all-link:hover {
+  opacity: 0.85;
+}
+
+/* 2. MOBILE APPLICATION DISPATCHES (Horizontal Slider) */
+.mobile-project-slider {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  /* Hide scrollbars for clean aesthetic */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: grab; /* Indicate draggability on desktop */
+}
+
+.mobile-project-slider.dragging {
+  cursor: grabbing;
+}
+
+.mobile-project-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-project-card {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 calc(33.333% - 1.33rem); /* 3 cards perfectly visible on desktop */
+  user-select: none; /* Prevent text selection while dragging */
+  cursor: pointer;
+}
+
+.mobile-project-slider.dragging .mobile-project-card {
+  cursor: grabbing; /* Override pointer with grabbing while dragging */
+}
+
+.mobile-project-card .mobile-image-slot {
+  transition: opacity 0.2s;
+}
+
+.mobile-project-card:hover .mobile-image-slot {
+  opacity: 0.85;
+}
+
+.mobile-project-card h4 {
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.2s;
+}
+
+.mobile-project-card:hover h4 {
+  text-decoration: underline;
+  text-decoration-color: var(--text-color);
+}
+
+@media (max-width: 992px) {
+  .mobile-project-card {
+    flex: 0 0 calc(50% - 1rem); /* 2 cards visible on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-project-card {
+    flex: 0 0 85%; /* 1 card visible on mobile, hinting at the next */
+  }
+}
+
+.mobile-image-slot {
+  width: 100%;
+  aspect-ratio: 9/16;
+  border: 1px solid var(--text-color);
+  margin-bottom: 0.75rem;
+  box-shadow: inset 0 0 0 4px var(--bg-color), inset 0 0 0 5px var(--text-color);
+  filter: grayscale(100%) contrast(120%);
+}
+
+.mobile-headline {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.mobile-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: #444;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.4rem;
+}
+
+/* 3. INTERFACE BLUEPRINTS & DESIGN */
+.design-blueprints-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .design-blueprints-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.canvas-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.blueprint-view {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border: 2px solid var(--text-color);
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.blueprint-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.blueprint-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  background-color: var(--text-color);
+}
+
+.canvas-caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  padding-bottom: 0.25rem;
+}
+
+.blueprint-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.5rem;
+}
+
+.notes-side {
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notes-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--text-color);
+  padding-bottom: 0.5rem;
+}
+
+.bulleted-notes {
+  list-style: square;
+  padding-left: 1.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.bulleted-notes li {
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+/* Vintage Patterns & Textures */
+.crosshatch-1 {
+  background-image: repeating-linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), repeating-linear-gradient(45deg, #ccc 25%, #f4f1ea 25%, #f4f1ea 75%, #ccc 75%, #ccc);
+  background-position: 0 0, 5px 5px;
+  background-size: 10px 10px;
+}
+.crosshatch-2 {
+  background-image: repeating-linear-gradient(-45deg, transparent, transparent 2px, #bbb 2px, #bbb 4px);
+  background-size: 8px 8px;
+}
+.halftone-1 {
+  background-image: radial-gradient(#888 20%, transparent 21%), radial-gradient(#888 20%, transparent 21%);
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
+}
+.halftone-2 {
+  background-image: repeating-linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%, #999), repeating-linear-gradient(45deg, #999 25%, #e5e5e5 25%, #e5e5e5 75%, #999 75%, #999);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+.halftone-3 {
+  background-image: radial-gradient(#666 15%, transparent 16%), radial-gradient(#666 15%, transparent 16%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+}

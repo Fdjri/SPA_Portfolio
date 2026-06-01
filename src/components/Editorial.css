@@ -1,0 +1,155 @@
+.editorial-section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.editorial-header h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.editorial-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .editorial-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.main-op-ed {
+  border-right: 1px solid var(--border-color);
+  padding-right: 3rem;
+}
+
+@media (max-width: 768px) {
+  .main-op-ed {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2rem;
+  }
+}
+
+.op-ed-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.author-bio {
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 0 0 4px var(--bg-color), inset 0 0 0 5px var(--border-color);
+}
+
+.author-portrait {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background-color: #ddd;
+  margin-bottom: 1rem;
+  border: 1px solid var(--text-color);
+  background-image: radial-gradient(#aaa 15%, transparent 16%), radial-gradient(#aaa 15%, transparent 16%);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+.author-bio h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.bio-text {
+  font-size: 0.9rem;
+}
+
+/* Public Notices Section */
+.public-notices-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.notices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.notice-badge {
+  border: 1px dashed var(--text-color);
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--bg-color);
+  position: relative;
+}
+
+/* Inner thin solid border to mimic an official stamp or notice frame */
+.notice-badge::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--border-color);
+  pointer-events: none;
+}
+
+.notice-image {
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--text-color);
+  margin-bottom: 1rem;
+  filter: grayscale(100%) contrast(120%);
+  z-index: 1;
+}
+
+.halftone-1 {
+  background-image: radial-gradient(#888 20%, transparent 21%), radial-gradient(#888 20%, transparent 21%);
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
+}
+
+.halftone-2 {
+  background-image: repeating-linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%, #999), repeating-linear-gradient(45deg, #999 25%, #e5e5e5 25%, #e5e5e5 75%, #999 75%, #999);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+.notice-content {
+  display: flex;
+  flex-direction: column;
+  z-index: 1; /* Ensure text stays above the pseudo-element border */
+}
+
+.notice-name {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.notice-meta {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: #333;
+  line-height: 1.4;
+}
