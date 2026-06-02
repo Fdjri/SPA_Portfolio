@@ -1,12 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+@font-face {
+  font-family: 'Chomsky';
+  src: url('/fonts/Chomsky.woff2') format('woff2'),
+       url('/fonts/Chomsky.woff') format('woff'),
+       url('/fonts/Chomsky.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  --bg-color: #f4f1ea;
+  --bg-color: #ffffff;
   --text-color: #121212;
-  --border-color: #aaaaaa;
+  --border-color: #333333;
   
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Inter', sans-serif;
+  --font-serif: "Times New Roman", Times, serif;
+  --font-sans: "Times New Roman", Times, serif;
+  --font-chomsky: 'Chomsky', "Times New Roman", Times, serif;
   
   --max-width: 1200px;
 }

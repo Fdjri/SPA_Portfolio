@@ -40,11 +40,11 @@
 }
 
 .masthead-title {
-  font-family: var(--font-serif);
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -2px;
+  font-family: var(--font-chomsky), var(--font-serif);
+  font-size: clamp(4.5rem, 12vw, 9.5rem); /* Increased size to be dominant */
+  font-weight: normal; /* Chomsky renders best at normal weight */
+  text-transform: capitalize; /* Chomsky is traditionally Title Case, not ALL CAPS */
+  letter-spacing: 0;
   margin: 0;
   line-height: 1;
 }
@@ -113,6 +113,14 @@
 
 .ticker-arrow {
   font-size: 0.65rem;
+}
+
+.ticker-arrow.bullish {
+  color: #00C805; /* Modern bright green */
+}
+
+.ticker-arrow.bearish {
+  color: #FF5000; /* Modern bright red */
 }
 
 .ticker-divider {

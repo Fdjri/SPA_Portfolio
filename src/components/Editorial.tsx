@@ -1,7 +1,27 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import './Editorial.css';
 
 export default function Editorial() {
+  const [selectedCert, setSelectedCert] = useState<{file: string, name: string} | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedCert(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setSelectedCert(null);
+    }
+  };
+
   return (
     <div className="editorial-section">
       <header className="editorial-header">
@@ -12,7 +32,7 @@ export default function Editorial() {
       <div className="editorial-content">
         <div className="editorial-column main-op-ed">
           <h3 className="op-ed-title">The Philosophy of Clean Code</h3>
-          <div className="byline">Opinion by Aji</div>
+          <div className="byline">Opinion by Fadjri</div>
           
           <div className="text-justify">
             <p className="drop-cap">
@@ -38,40 +58,39 @@ export default function Editorial() {
           <h4 className="public-notices-title">Public Notices & Official Credentials</h4>
           
           <div className="notices-grid">
-            <div className="notice-badge">
-              <div className="notice-image halftone-1"></div>
-              <div className="notice-content">
-                <span className="notice-name">Certified Application Developer</span>
-                <span className="notice-meta">Issued by Global Tech Authority<br/>Verified ID: 10293</span>
+            {[
+              { id: 'bnsp', file: 'bnsp.webp', name: 'Professional Certification', meta: 'Issued by BNSP' },
+              { id: 'flutter', file: 'flutter.webp', name: 'Flutter Development', meta: 'Cross-platform Framework' },
+              { id: 'ethical', file: 'ethicalhacking.webp', name: 'Ethical Hacking', meta: 'Advanced Security' },
+              { id: 'cybersecurity', file: 'cybersecurity.webp', name: 'Cybersecurity', meta: 'Security Essentials' },
+              { id: 'microsoft', file: 'microsoft.webp', name: 'Microsoft Certified', meta: 'Microsoft Office Applications' },
+              { id: 'azure', file: 'azure.webp', name: 'Azure Fundamentals', meta: 'Issued by Microsoft' },
+            ].map((cert) => (
+              <div 
+                className="notice-badge clickable-badge" 
+                key={cert.id}
+                onClick={() => setSelectedCert({ file: cert.file, name: cert.name })}
+                role="button"
+                tabIndex={0}
+              >
+                <img src={`/images/certificates/${cert.file}`} alt={cert.name} className="notice-image" />
+                <div className="notice-content">
+                  <span className="notice-name">{cert.name}</span>
+                  <span className="notice-meta">{cert.meta}</span>
+                </div>
               </div>
-            </div>
-            
-            <div className="notice-badge">
-              <div className="notice-image halftone-2"></div>
-              <div className="notice-content">
-                <span className="notice-name">Advanced Frontend Architecture</span>
-                <span className="notice-meta">Issued by Frontend Masters<br/>Verified ID: 8842X</span>
-              </div>
-            </div>
-
-            <div className="notice-badge">
-              <div className="notice-image halftone-1"></div>
-              <div className="notice-content">
-                <span className="notice-name">Cloud Infrastructure Expert</span>
-                <span className="notice-meta">Issued by Amazon Web Services<br/>Verified ID: 7729Y</span>
-              </div>
-            </div>
+            ))}
           </div>
           
         </div>
         
         <div className="editorial-column side-op-ed">
           <div className="author-bio">
-            <div className="author-portrait"></div>
+            <img src="/images/me.webp" alt="Fadjri" className="author-portrait" />
             <h4>About the Author</h4>
             <p className="bio-text text-justify">
-              Aji is a specialized Frontend Developer with a keen eye for elite UI/UX design. 
-              With extensive experience in React, Next.js, and modern CSS architectures, Aji 
+              Fadjri is a specialized Frontend Developer with a keen eye for elite UI/UX design. 
+              With extensive experience in React, Next.js, and modern CSS architectures, Fadjri 
               focuses on building highly polished, responsive applications. 
             </p>
             <p className="bio-text">
@@ -80,6 +99,22 @@ export default function Editorial() {
           </div>
         </div>
       </div>
+
+      {selectedCert && (
+        <div className="modal-overlay" onClick={handleBackdropClick}>
+          <div className="modal-content">
+            <div className="cert-modal-header">Official Archive Record Verification</div>
+            <img 
+              src={`/images/certificates/${selectedCert.file}`} 
+              alt={selectedCert.name} 
+              className="cert-modal-image" 
+            />
+            <button className="cert-modal-close" onClick={() => setSelectedCert(null)}>
+              [ Close Registry ]
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

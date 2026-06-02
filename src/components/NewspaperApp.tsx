@@ -7,14 +7,29 @@ import FrontPage from './FrontPage';
 import Editorial from './Editorial';
 import NewsGrid from './NewsGrid';
 import Classifieds from './Classifieds';
+import ProjectDetail from './ProjectDetail';
+import { ProjectData } from '../types';
 
 export default function NewspaperApp() {
+  const [activeProject, setActiveProject] = React.useState<ProjectData | null>(null);
+
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setActiveProject(null); // Return to main view if clicking nav
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
   };
+
+  if (activeProject) {
+    return (
+      <div className="newspaper-app container">
+        <ProjectDetail project={activeProject} onBack={() => setActiveProject(null)} />
+      </div>
+    );
+  }
 
   return (
     <div className="newspaper-app container">
@@ -71,7 +86,7 @@ export default function NewspaperApp() {
         <div className="section-divider"></div>
         
         <section id="projects" className="page-section">
-          <NewsGrid />
+          <NewsGrid onProjectSelect={setActiveProject} />
         </section>
         
         <div className="section-divider"></div>
@@ -83,7 +98,7 @@ export default function NewspaperApp() {
       
       <footer className="newspaper-footer">
         <div className="divider-double"></div>
-        <p>&copy; {new Date().getFullYear()} Aji's Portfolio. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Fadjri's Portfolio. All Rights Reserved.</p>
       </footer>
     </div>
   );

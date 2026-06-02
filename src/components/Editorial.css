@@ -52,12 +52,9 @@
 .author-portrait {
   width: 100%;
   aspect-ratio: 3/4;
-  background-color: #ddd;
+  object-fit: cover;
   margin-bottom: 1rem;
   border: 1px solid var(--text-color);
-  background-image: radial-gradient(#aaa 15%, transparent 16%), radial-gradient(#aaa 15%, transparent 16%);
-  background-size: 8px 8px;
-  background-position: 0 0, 4px 4px;
 }
 
 .author-bio h4 {
@@ -84,19 +81,29 @@
 
 .notices-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Reduced from 220px to make them smaller */
+  gap: 1rem; /* Reduced gap */
 }
 
 .notice-badge {
   border: 1px dashed var(--text-color);
-  padding: 1.25rem 1rem;
+  padding: 0.75rem 0.5rem; /* Reduced padding */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   background-color: var(--bg-color);
   position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.notice-badge.clickable-badge {
+  cursor: pointer;
+}
+
+.notice-badge.clickable-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
 
 /* Inner thin solid border to mimic an official stamp or notice frame */
@@ -112,24 +119,13 @@
 }
 
 .notice-image {
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  background-color: #f9f9f9;
   border: 1px solid var(--text-color);
-  margin-bottom: 1rem;
-  filter: grayscale(100%) contrast(120%);
+  margin-bottom: 0.5rem;
   z-index: 1;
-}
-
-.halftone-1 {
-  background-image: radial-gradient(#888 20%, transparent 21%), radial-gradient(#888 20%, transparent 21%);
-  background-size: 6px 6px;
-  background-position: 0 0, 3px 3px;
-}
-
-.halftone-2 {
-  background-image: repeating-linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%, #999), repeating-linear-gradient(45deg, #999 25%, #e5e5e5 25%, #e5e5e5 75%, #999 75%, #999);
-  background-size: 8px 8px;
-  background-position: 0 0, 4px 4px;
 }
 
 .notice-content {
@@ -140,16 +136,100 @@
 
 .notice-name {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.75rem; /* Reduced font size */
   font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
   text-transform: uppercase;
 }
 
 .notice-meta {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  color: #333;
-  line-height: 1.4;
+  font-size: 0.65rem; /* Reduced meta font size */
+  color: #555; /* Modern, slightly lighter contrast for subtext */
+  line-height: 1.2;
 }
+
+/* ---------------------------------------------------- */
+/* Vintage Modal Component */
+/* ---------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Modern dark tint */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeInModal 0.3s ease-out forwards;
+}
+
+.modal-content {
+  background-color: #ffffff; /* Pure white */
+  border: 2px solid var(--text-color);
+  padding: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleInModal 0.3s ease-out forwards;
+}
+
+.cert-modal-header {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--text-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.cert-modal-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 60vh;
+  border: 1px solid var(--text-color); /* Historical press photo frame */
+  object-fit: contain;
+  margin-bottom: 2rem;
+}
+
+.cert-modal-close {
+  align-self: center;
+  background-color: transparent;
+  border: 2px solid var(--text-color);
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-color);
+  letter-spacing: 1.5px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.cert-modal-close:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleInModal {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+

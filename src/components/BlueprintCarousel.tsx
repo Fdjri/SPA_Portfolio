@@ -10,38 +10,38 @@ export default function BlueprintCarousel() {
   const blueprints = [
     {
       id: 1,
-      styleClass: 'crosshatch-2',
-      caption: 'Fig. 1 — A comprehensive wireframe layout prioritizing user flow and accessible typography.',
-      title: 'Case Study Notes: Project Alpha',
+      imgSrc: '/images/projects/uiux/banksampah/mockup.jpg',
+      caption: 'Fig. 1 — Bank Sampah UI/UX Prototype prioritizing user flow and accessibility.',
+      title: 'Case Study Notes: Bank Sampah',
       notes: [
-        { label: 'Objective:', text: 'Overhaul the legacy user dashboard to improve daily active engagement.' },
+        { label: 'Objective:', text: 'Overhaul waste management interface to improve daily active engagement.' },
         { label: 'Research:', text: 'Conducted 20+ user interviews to identify friction points in navigation.' },
-        { label: 'Typography:', text: 'Switched to a variable sans-serif font for increased readability on low-DPI displays.' },
+        { label: 'Typography:', text: 'Switched to a variable sans-serif font for increased readability on mobile devices.' },
         { label: 'Outcome:', text: '35% increase in task completion rates within the first month of deployment.' }
       ]
     },
     {
       id: 2,
-      styleClass: 'halftone-2',
-      caption: 'Fig. 2 — Mobile-first checkout flow with streamlined single-page architecture.',
-      title: 'Case Study Notes: Beta Checkout',
+      imgSrc: '/images/projects/uiux/nutrimate/mockup.jpg',
+      caption: 'Fig. 2 — NutriMate mobile-first health tracking architecture.',
+      title: 'Case Study Notes: NutriMate',
       notes: [
-        { label: 'Objective:', text: 'Reduce cart abandonment rates on mobile devices.' },
+        { label: 'Objective:', text: 'Design an intuitive platform for nutrition and health tracking.' },
         { label: 'Prototyping:', text: 'Iterated through 5 distinct UX patterns using high-fidelity Figma prototypes.' },
-        { label: 'Optimization:', text: 'Consolidated a 4-step process into a single, dynamic accordion view.' },
-        { label: 'Outcome:', text: 'Checkout speed improved by 22 seconds on average.' }
+        { label: 'Optimization:', text: 'Consolidated a 4-step logging process into a single, dynamic view.' },
+        { label: 'Outcome:', text: 'User logging speed improved by 22 seconds on average.' }
       ]
     },
     {
       id: 3,
-      styleClass: 'crosshatch-1',
-      caption: 'Fig. 3 — Enterprise data visualization dashboard featuring high-contrast dark mode.',
-      title: 'Case Study Notes: Gamma Analytics',
+      imgSrc: '/images/projects/uiux/silika/mockup.jpg',
+      caption: 'Fig. 3 — Silika enterprise visualization dashboard featuring high-contrast UI.',
+      title: 'Case Study Notes: Silika',
       notes: [
         { label: 'Objective:', text: 'Design a scalable charting interface for massive datasets.' },
         { label: 'Accessibility:', text: 'Implemented strict WCAG AAA color contrast ratios for data segments.' },
         { label: 'Architecture:', text: 'Developed a modular component library for reusable widget states.' },
-        { label: 'Outcome:', text: 'Successfully adopted across 4 major internal organizational teams.' }
+        { label: 'Outcome:', text: 'Successfully adopted across major internal organizational teams.' }
       ]
     }
   ];
@@ -65,7 +65,13 @@ export default function BlueprintCarousel() {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {blueprints.map((bp) => (
-              <div key={bp.id} className={`blueprint-slide ${bp.styleClass}`}></div>
+              <img 
+                key={bp.id} 
+                src={bp.imgSrc} 
+                alt={bp.title} 
+                className="blueprint-slide" 
+                style={{ objectFit: 'contain', backgroundColor: '#f9f9f9', border: '1px solid var(--text-color)' }}
+              />
             ))}
           </div>
         </div>

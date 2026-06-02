@@ -90,7 +90,7 @@ export default function Masthead() {
       </div>
 
       <div className="masthead-title-container">
-        <h1 className="masthead-title">Aji's Portfolio</h1>
+        <h1 className="masthead-title">Fadjri's Portfolio</h1>
       </div>
 
       <div className="masthead-bottom">
@@ -101,43 +101,43 @@ export default function Masthead() {
       <div className="stock-ticker">
         <div className="ticker-content">
           <span className="ticker-track">
-            <span className="ticker-item"><span className="ticker-symbol">NEXT.JS</span> <span className="ticker-arrow">&#9650;</span> BULLISH</span>
+            <span className="ticker-item"><span className="ticker-symbol">NEXT.JS</span> <span className="ticker-arrow bullish">&#9650;</span> BULLISH</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">FLUTTER</span> <span className="ticker-arrow">&#9650;</span> STABLE</span>
+            <span className="ticker-item"><span className="ticker-symbol">FLUTTER</span> <span className="ticker-arrow bullish">&#9650;</span> STABLE</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">LARAVEL</span> <span className="ticker-arrow">&#9650;</span> STRONG</span>
+            <span className="ticker-item"><span className="ticker-symbol">LARAVEL</span> <span className="ticker-arrow bullish">&#9650;</span> STRONG</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">ACADEMIC.GPA</span> <span className="ticker-arrow">&#9650;</span> 3.89</span>
+            <span className="ticker-item"><span className="ticker-symbol">ACADEMIC.GPA</span> <span className="ticker-arrow bullish">&#9650;</span> 3.89</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">BUG.RATE</span> <span className="ticker-arrow">&#9660;</span> 0.02%</span>
+            <span className="ticker-item"><span className="ticker-symbol">BUG.RATE</span> <span className="ticker-arrow bearish">&#9660;</span> 0.02%</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">BPS_RW.APP</span> <span className="ticker-arrow">&#9650;</span> DEPLOYED</span>
+            <span className="ticker-item"><span className="ticker-symbol">BPS_RW.APP</span> <span className="ticker-arrow bullish">&#9650;</span> DEPLOYED</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">TFT.SET17.META</span> <span className="ticker-arrow">&#9650;</span> UNLOCKED</span>
+            <span className="ticker-item"><span className="ticker-symbol">TFT.SET17.META</span> <span className="ticker-arrow bullish">&#9650;</span> UNLOCKED</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">MYSQL</span> <span className="ticker-arrow">&#9650;</span> SOLID</span>
+            <span className="ticker-item"><span className="ticker-symbol">MYSQL</span> <span className="ticker-arrow bullish">&#9650;</span> SOLID</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">FIGMA</span> <span className="ticker-arrow">&#9650;</span> CREATIVE</span>
+            <span className="ticker-item"><span className="ticker-symbol">FIGMA</span> <span className="ticker-arrow bullish">&#9650;</span> CREATIVE</span>
             <span className="ticker-divider">|</span>
           </span>
           <span className="ticker-track" aria-hidden="true">
-            <span className="ticker-item"><span className="ticker-symbol">NEXT.JS</span> <span className="ticker-arrow">&#9650;</span> BULLISH</span>
+            <span className="ticker-item"><span className="ticker-symbol">NEXT.JS</span> <span className="ticker-arrow bullish">&#9650;</span> BULLISH</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">FLUTTER</span> <span className="ticker-arrow">&#9650;</span> STABLE</span>
+            <span className="ticker-item"><span className="ticker-symbol">FLUTTER</span> <span className="ticker-arrow bullish">&#9650;</span> STABLE</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">LARAVEL</span> <span className="ticker-arrow">&#9650;</span> STRONG</span>
+            <span className="ticker-item"><span className="ticker-symbol">LARAVEL</span> <span className="ticker-arrow bullish">&#9650;</span> STRONG</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">ACADEMIC.GPA</span> <span className="ticker-arrow">&#9650;</span> 3.89</span>
+            <span className="ticker-item"><span className="ticker-symbol">ACADEMIC.GPA</span> <span className="ticker-arrow bullish">&#9650;</span> 3.89</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">BUG.RATE</span> <span className="ticker-arrow">&#9660;</span> 0.02%</span>
+            <span className="ticker-item"><span className="ticker-symbol">BUG.RATE</span> <span className="ticker-arrow bearish">&#9660;</span> 0.02%</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">BPS_RW.APP</span> <span className="ticker-arrow">&#9650;</span> DEPLOYED</span>
+            <span className="ticker-item"><span className="ticker-symbol">BPS_RW.APP</span> <span className="ticker-arrow bullish">&#9650;</span> DEPLOYED</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">TFT.SET16.META</span> <span className="ticker-arrow">&#9650;</span> UNLOCKED</span>
+            <span className="ticker-item"><span className="ticker-symbol">TFT.SET16.META</span> <span className="ticker-arrow bullish">&#9650;</span> UNLOCKED</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">MYSQL</span> <span className="ticker-arrow">&#9650;</span> SOLID</span>
+            <span className="ticker-item"><span className="ticker-symbol">MYSQL</span> <span className="ticker-arrow bullish">&#9650;</span> SOLID</span>
             <span className="ticker-divider">|</span>
-            <span className="ticker-item"><span className="ticker-symbol">FIGMA</span> <span className="ticker-arrow">&#9650;</span> CREATIVE</span>
+            <span className="ticker-item"><span className="ticker-symbol">FIGMA</span> <span className="ticker-arrow bullish">&#9650;</span> CREATIVE</span>
             <span className="ticker-divider">|</span>
           </span>
         </div>

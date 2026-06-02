@@ -93,20 +93,32 @@
 .tool-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1.5rem;
   justify-content: center;
+  align-items: flex-end;
   z-index: 1;
 }
 
-.tool-badge {
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tool-logo {
+  height: 28px;
+  width: auto;
+  transition: transform 0.2s;
+}
+
+.tool-label {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  border: 1px solid var(--text-color);
-  padding: 0.2rem 0.5rem;
   text-transform: uppercase;
-  background-color: var(--text-color);
-  color: var(--bg-color);
+  letter-spacing: 0.5px;
+  color: var(--text-color);
 }
 
 /* Authentic Newspaper Project Layouts */
@@ -251,15 +263,16 @@
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   .web-col-center {
-    order: 1; /* Center column (featured) stacks first */
+    order: 1;
+    /* Center column (featured) stacks first */
     padding: 0;
     border-bottom: 3px double var(--text-color);
     padding-bottom: 2rem;
     margin-bottom: 1rem;
   }
-  
+
   .side-left {
     order: 2;
     border-right: none;
@@ -267,7 +280,7 @@
     padding-right: 0;
     padding-bottom: 2rem;
   }
-  
+
   .side-right {
     order: 3;
     border-left: none;
@@ -310,7 +323,8 @@
   /* Hide scrollbars for clean aesthetic */
   -ms-overflow-style: none;
   scrollbar-width: none;
-  cursor: grab; /* Indicate draggability on desktop */
+  cursor: grab;
+  /* Indicate draggability on desktop */
 }
 
 .mobile-project-slider.dragging {
@@ -324,13 +338,16 @@
 .mobile-project-card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 calc(33.333% - 1.33rem); /* 3 cards perfectly visible on desktop */
-  user-select: none; /* Prevent text selection while dragging */
+  flex: 0 0 240px;
+  /* Fixed clean width for desktop */
+  user-select: none;
+  /* Prevent text selection while dragging */
   cursor: pointer;
 }
 
 .mobile-project-slider.dragging .mobile-project-card {
-  cursor: grabbing; /* Override pointer with grabbing while dragging */
+  cursor: grabbing;
+  /* Override pointer with grabbing while dragging */
 }
 
 .mobile-project-card .mobile-image-slot {
@@ -353,23 +370,54 @@
 
 @media (max-width: 992px) {
   .mobile-project-card {
-    flex: 0 0 calc(50% - 1rem); /* 2 cards visible on tablets */
+    flex: 0 0 240px;
   }
 }
 
 @media (max-width: 600px) {
   .mobile-project-card {
-    flex: 0 0 85%; /* 1 card visible on mobile, hinting at the next */
+    flex: 0 0 220px;
   }
+}
+
+.phone-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
+  border: 2px solid var(--text-color);
+  border-radius: 32px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+}
+
+.phone-notch {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25%;
+  max-width: 80px;
+  height: 18px;
+  background-color: var(--text-color);
+  border-radius: 9px;
+  z-index: 10;
 }
 
 .mobile-image-slot {
   width: 100%;
-  aspect-ratio: 9/16;
-  border: 1px solid var(--text-color);
-  margin-bottom: 0.75rem;
-  box-shadow: inset 0 0 0 4px var(--bg-color), inset 0 0 0 5px var(--text-color);
-  filter: grayscale(100%) contrast(120%);
+  height: 100%; /* Fill the phone frame */
+  object-fit: cover;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .mobile-headline {
@@ -394,23 +442,43 @@
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: 2.5rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .design-blueprints-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .canvas-side {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .notes-side {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
 .canvas-side {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .blueprint-view {
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/9; /* Adjusted for a wider, shorter frame */
+  max-height: 400px; /* Constrain max height so it doesn't take over the page */
   border: 2px solid var(--text-color);
   margin-bottom: 0.5rem;
   overflow: hidden;
@@ -426,7 +494,10 @@
 
 .blueprint-slide {
   flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
   height: 100%;
+  box-sizing: border-box;
   background-color: var(--text-color);
 }
 
@@ -456,6 +527,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .notes-title {
@@ -486,20 +560,24 @@
   background-position: 0 0, 5px 5px;
   background-size: 10px 10px;
 }
+
 .crosshatch-2 {
   background-image: repeating-linear-gradient(-45deg, transparent, transparent 2px, #bbb 2px, #bbb 4px);
   background-size: 8px 8px;
 }
+
 .halftone-1 {
   background-image: radial-gradient(#888 20%, transparent 21%), radial-gradient(#888 20%, transparent 21%);
   background-size: 6px 6px;
   background-position: 0 0, 3px 3px;
 }
+
 .halftone-2 {
   background-image: repeating-linear-gradient(45deg, #999 25%, transparent 25%, transparent 75%, #999 75%, #999), repeating-linear-gradient(45deg, #999 25%, #e5e5e5 25%, #e5e5e5 75%, #999 75%, #999);
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px;
 }
+
 .halftone-3 {
   background-image: radial-gradient(#666 15%, transparent 16%), radial-gradient(#666 15%, transparent 16%);
   background-size: 10px 10px;

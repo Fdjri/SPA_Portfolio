@@ -41,15 +41,15 @@ export default function Classifieds() {
           <ul className="notices-list">
             <li>
               <strong>GITHUB REPOSITORY</strong> - An extensive collection of open-source contributions and private projects available for review. 
-              <br/><a href="#">github.com/aji-portfolio</a>
+              <br/><a href="#">github.com/fadjri-portfolio</a>
             </li>
             <li>
               <strong>LINKEDIN PROFILE</strong> - Professional history, endorsements, and educational background documented here.
-              <br/><a href="#">linkedin.com/in/aji-portfolio</a>
+              <br/><a href="#">linkedin.com/in/fadjri-portfolio</a>
             </li>
             <li>
               <strong>TWITTER / X</strong> - Daily musings on web development, UI/UX design, and technology trends.
-              <br/><a href="#">@aji_dev</a>
+              <br/><a href="#">@fadjri_dev</a>
             </li>
           </ul>
         </div>

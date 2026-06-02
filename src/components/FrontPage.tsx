@@ -1,7 +1,59 @@
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import './FrontPage.css';
 
+interface GithubLanguage {
+  name: string;
+  percentage: number;
+}
+
+const LANGUAGE_COLORS: Record<string, string> = {
+  Dart: '#0175C2',
+  JavaScript: '#F7DF1E',
+  TypeScript: '#3178C6',
+  PHP: '#777BB4',
+  HTML: '#E34F26',
+  CSS: '#1572B6',
+  Python: '#3572A5',
+  Java: '#b07219',
+  'C++': '#f34b7d',
+  C: '#555555',
+  Ruby: '#701516',
+  Go: '#00ADD8',
+  Kotlin: '#A97BFF',
+  Swift: '#F05138',
+  Others: '#999999'
+};
+
+const getLangColor = (lang: string) => LANGUAGE_COLORS[lang] || '#121212';
+
 export default function FrontPage() {
+  const [languages, setLanguages] = useState<GithubLanguage[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchLanguages() {
+      try {
+        const res = await fetch('/api/github-languages');
+        if (!res.ok) throw new Error('Failed to fetch from GitHub API');
+        const data = await res.json();
+        setLanguages(data.languages || []);
+      } catch (error) {
+        console.error(error);
+        // Fallback in case of API rate limit errors without a token
+        setLanguages([
+          { name: 'Dart', percentage: 45 },
+          { name: 'JavaScript', percentage: 30 },
+          { name: 'PHP', percentage: 15 },
+          { name: 'SQL', percentage: 10 }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchLanguages();
+  }, []);
+
   return (
     <div className="front-page">
       <div className="headline-section">
@@ -14,7 +66,7 @@ export default function FrontPage() {
       
       <div className="hero-grid">
         <div className="lead-intro text-justify">
-          <div className="byline">By AJI PORTFOLIO <span>&bull;</span> Exclusive</div>
+          <div className="byline">By FADJRI PORTFOLIO <span>&bull;</span> Exclusive</div>
           <p className="drop-cap">
             In an era defined by rapid technological shifts, the distinction between a functional application and a truly 
             memorable digital experience lies in the subtle equilibrium of engineering and aesthetics. We are witnessing a 
@@ -39,35 +91,50 @@ export default function FrontPage() {
             <h3 className="sidebar-title">Global Codebase Index</h3>
             
             <div className="github-bar-container">
-              <div className="github-bar">
-                <span className="bar-segment dart-bar" style={{ width: '45%' }}></span>
-                <span className="bar-segment js-bar" style={{ width: '30%' }}></span>
-                <span className="bar-segment php-bar" style={{ width: '15%' }}></span>
-                <span className="bar-segment sql-bar" style={{ width: '10%' }}></span>
-              </div>
+              {loading ? (
+                <div className="github-bar skeleton-bar"></div>
+              ) : (
+                <div className="github-bar">
+                  {languages.map(lang => (
+                    <span 
+                      key={lang.name}
+                      className="bar-segment" 
+                      style={{ 
+                        width: `${lang.percentage}%`, 
+                        backgroundColor: getLangColor(lang.name) 
+                      }}
+                      title={`${lang.name}: ${lang.percentage}%`}
+                    ></span>
+                  ))}
+                </div>
+              )}
             </div>
             
             <ul className="tech-legend">
-              <li>
-                <span className="legend-dot dart-dot"></span>
-                <span className="legend-label">Dart <span className="legend-percent">45%</span></span>
-              </li>
-              <li>
-                <span className="legend-dot js-dot"></span>
-                <span className="legend-label">JS / TS <span className="legend-percent">30%</span></span>
-              </li>
-              <li>
-                <span className="legend-dot php-dot"></span>
-                <span className="legend-label">PHP <span className="legend-percent">15%</span></span>
-              </li>
-              <li>
-                <span className="legend-dot sql-dot"></span>
-                <span className="legend-label">SQL <span className="legend-percent">10%</span></span>
-              </li>
+              {loading ? (
+                Array.from({ length: 4 }).map((_, i) => (
+                  <li key={i}>
+                    <span className="legend-dot skeleton-dot"></span>
+                    <span className="legend-label skeleton-text"></span>
+                  </li>
+                ))
+              ) : (
+                languages.map(lang => (
+                  <li key={lang.name}>
+                    <span 
+                      className="legend-dot" 
+                      style={{ backgroundColor: getLangColor(lang.name) }}
+                    ></span>
+                    <span className="legend-label">
+                      {lang.name} <span className="legend-percent">{lang.percentage}%</span>
+                    </span>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
           <figcaption className="asset-caption text-justify">
-            Fig. 1 &mdash; Comprehensive analysis of overall language distribution across all historical repository metrics.
+            Fig. 1 &mdash; Live dynamic analysis of overall language distribution across all public repository metrics.
           </figcaption>
         </aside>
       </div>
