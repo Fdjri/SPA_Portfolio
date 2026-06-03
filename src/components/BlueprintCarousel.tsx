@@ -1,60 +1,34 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import './NewsGrid.css';
 import './FeaturedCarousel.css';
+import { LOCAL_PROJECTS } from '../data/projectsData';
 
 export default function BlueprintCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const blueprints = [
-    {
-      id: 1,
-      imgSrc: '/images/projects/uiux/banksampah/mockup.jpg',
-      caption: 'Fig. 1 — Bank Sampah UI/UX Prototype prioritizing user flow and accessibility.',
-      title: 'Case Study Notes: Bank Sampah',
-      notes: [
-        { label: 'Objective:', text: 'Overhaul waste management interface to improve daily active engagement.' },
-        { label: 'Research:', text: 'Conducted 20+ user interviews to identify friction points in navigation.' },
-        { label: 'Typography:', text: 'Switched to a variable sans-serif font for increased readability on mobile devices.' },
-        { label: 'Outcome:', text: '35% increase in task completion rates within the first month of deployment.' }
-      ]
-    },
-    {
-      id: 2,
-      imgSrc: '/images/projects/uiux/nutrimate/mockup.jpg',
-      caption: 'Fig. 2 — NutriMate mobile-first health tracking architecture.',
-      title: 'Case Study Notes: NutriMate',
-      notes: [
-        { label: 'Objective:', text: 'Design an intuitive platform for nutrition and health tracking.' },
-        { label: 'Prototyping:', text: 'Iterated through 5 distinct UX patterns using high-fidelity Figma prototypes.' },
-        { label: 'Optimization:', text: 'Consolidated a 4-step logging process into a single, dynamic view.' },
-        { label: 'Outcome:', text: 'User logging speed improved by 22 seconds on average.' }
-      ]
-    },
-    {
-      id: 3,
-      imgSrc: '/images/projects/uiux/silika/mockup.jpg',
-      caption: 'Fig. 3 — Silika enterprise visualization dashboard featuring high-contrast UI.',
-      title: 'Case Study Notes: Silika',
-      notes: [
-        { label: 'Objective:', text: 'Design a scalable charting interface for massive datasets.' },
-        { label: 'Accessibility:', text: 'Implemented strict WCAG AAA color contrast ratios for data segments.' },
-        { label: 'Architecture:', text: 'Developed a modular component library for reusable widget states.' },
-        { label: 'Outcome:', text: 'Successfully adopted across major internal organizational teams.' }
-      ]
-    }
+  // Map to the active slide index state (0: Bank Sampah, 1: SILIKA, 2: Nutrimate)
+  const projectIds = ['bank-sampah-ui', 'silika-ui', 'nutrimate-ui'];
+  
+  // Custom captions for the canvas side as per the original layout
+  const captions = [
+    'Fig. 1 — Bank Sampah UI/UX Prototype prioritizing user flow and accessibility.',
+    'Fig. 2 — Silika enterprise visualization dashboard featuring high-contrast UI.',
+    'Fig. 3 — NutriMate mobile-first health tracking architecture.'
   ];
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % blueprints.length);
+    setCurrentIndex((prev) => (prev + 1) % projectIds.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + blueprints.length) % blueprints.length);
+    setCurrentIndex((prev) => (prev - 1 + projectIds.length) % projectIds.length);
   };
 
-  const activeBlueprint = blueprints[currentIndex];
+  const activeProjectId = projectIds[currentIndex];
+  const currentProject = LOCAL_PROJECTS[activeProjectId];
 
   return (
     <div className="design-blueprints-grid">
@@ -64,36 +38,62 @@ export default function BlueprintCarousel() {
             className="blueprint-track"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {blueprints.map((bp) => (
-              <img 
-                key={bp.id} 
-                src={bp.imgSrc} 
-                alt={bp.title} 
-                className="blueprint-slide" 
-                style={{ objectFit: 'contain', backgroundColor: '#f9f9f9', border: '1px solid var(--text-color)' }}
-              />
-            ))}
+            {projectIds.map((id) => {
+              const proj = LOCAL_PROJECTS[id];
+              // Find the mockup image, or fallback to the first image
+              const mockupImg = proj.images.find(img => img.includes('mockup')) || proj.images[0];
+              return (
+                <img 
+                  key={id} 
+                  src={mockupImg} 
+                  alt={proj.title} 
+                  className="blueprint-slide" 
+                  style={{ objectFit: 'contain', backgroundColor: '#f9f9f9', border: '1px solid var(--text-color)' }}
+                />
+              );
+            })}
           </div>
         </div>
         
         <figcaption className="canvas-caption">
-          {activeBlueprint.caption}
+          {captions[currentIndex]}
         </figcaption>
 
         <div className="blueprint-navigation">
           <button onClick={prevSlide} className="carousel-btn" aria-label="Previous blueprint">&#8592;</button>
-          <span className="carousel-pagination">Blueprint {currentIndex + 1} of {blueprints.length}</span>
+          <span className="carousel-pagination">Blueprint {currentIndex + 1} of {projectIds.length}</span>
           <button onClick={nextSlide} className="carousel-btn" aria-label="Next blueprint">&#8594;</button>
         </div>
       </div>
       
-      <div className="notes-side">
-        <h4 className="notes-title">{activeBlueprint.title}</h4>
-        <ul className="bulleted-notes">
-          {activeBlueprint.notes.map((note, idx) => (
-            <li key={idx}><strong>{note.label}</strong> {note.text}</li>
-          ))}
+      <div className="notes-side" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <h4 className="notes-title">Case Study Notes: {currentProject.title}</h4>
+        <ul className="bulleted-notes" style={{ flexGrow: 1 }}>
+          <li><strong>Objective:</strong> {currentProject.objective}</li>
+          <li><strong>Research:</strong> {currentProject.research}</li>
+          <li><strong>Typography:</strong> {currentProject.typography}</li>
+          <li><strong>Outcome:</strong> {currentProject.outcome}</li>
         </ul>
+        
+        <div style={{ marginTop: '24px', textAlign: 'center' }}>
+          <Link 
+            href={`/projects/${currentProject.id}`}
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              color: 'var(--text-color)',
+              textDecoration: 'none',
+              fontSize: '0.9rem',
+              letterSpacing: '1px',
+              display: 'inline-block'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+            onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+          >
+            [ READ FULL DISPATCH &rarr; ]
+          </Link>
+        </div>
       </div>
     </div>
   );

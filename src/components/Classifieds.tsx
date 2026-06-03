@@ -1,71 +1,193 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import './Classifieds.css';
 
+type GigType = 'react-rookie' | 'laravel-flutter-pro';
+
 export default function Classifieds() {
+  const [activeGigType, setActiveGigType] = useState<GigType>('react-rookie');
+  const [isSending, setIsSending] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    const formElementData = new FormData(formRef.current);
+    const namaVal = formElementData.get('nama') as string;
+    const emailVal = formElementData.get('email') as string;
+    const messageVal = formElementData.get('isi_email') as string;
+
+    setIsSending(true);
+
+    const templateParams = {
+      from_name: namaVal,
+      from_email: emailVal,
+      message: messageVal
+    };
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      .then(
+        (result) => {
+          setIsSending(false);
+          setIsSuccess(true);
+          formRef.current?.reset();
+          
+          setTimeout(() => {
+            setIsSuccess(false);
+          }, 5000);
+        },
+        (error) => {
+          setIsSending(false);
+          alert('Failed to dispatch. The telegraph lines are down.');
+        }
+      );
+  };
+
   return (
-    <div className="classifieds-section">
+    <div className="classifieds-section" style={{ background: 'transparent' }}>
       <header className="classifieds-header">
         <h2>Classifieds</h2>
         <div className="divider-thick"></div>
       </header>
       
-      <div className="classifieds-grid">
-        <div className="classified-ad contact-form-ad">
+      <div className="classifieds-grid" style={{ background: 'transparent' }}>
+        <div 
+          className="classified-ad contact-form-ad"
+          onClick={() => setActiveGigType('react-rookie')}
+        >
           <div className="ad-header">HELP WANTED</div>
-          <p className="ad-body text-justify">
-            SEEKING visionary projects and forward-thinking teams. Must value clean code, modern architecture, and elegant design. Will bring expertise in React, Next.js, and creative problem-solving.
+          <p className="ad-body text-justify" style={{ marginBottom: '0.5rem' }}>
+            FRONT-END APPRENTICESHIP & JUNIOR ROLES SOUGHT — Ambitious final-year Information Technology student actively seeking high-velocity front-end exposure to solidify production-level competencies in React and the Next.js paradigm. Currently transitioning core architectural skills from battle-tested monolithic systems (Laravel) and cross-platform mobile engineering (Flutter) into complex component state management. Looking to join engineering squads that value clean programmatic logic over library gatekeeping. Ready to deploy, eager to break things, and built to scale.
           </p>
           
-          <form className="vintage-form">
-            <div className="form-group">
-              <label htmlFor="name">NAME / ORGANIZATION:</label>
-              <input type="text" id="name" name="name" className="vintage-input" placeholder="Enter name..." />
+          <div style={{
+            marginTop: 'auto',
+            padding: '1.25rem',
+            border: '2px dashed #121212',
+            backgroundColor: '#ffffff',
+            position: 'relative'
+          }}>
+            <div style={{
+              fontStyle: 'italic',
+              fontSize: '0.75rem',
+              color: '#333',
+              marginBottom: '1rem',
+              textAlign: 'center',
+              letterSpacing: '0.5px'
+            }}>
+              ✂ Cut along the dotted line to dispatch your inquiry
             </div>
-            
-            <div className="form-group">
-              <label htmlFor="email">TELEGRAPH / EMAIL:</label>
-              <input type="email" id="email" name="email" className="vintage-input" placeholder="Enter address..." />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="message">DISPATCH (MESSAGE):</label>
-              <textarea id="message" name="message" rows={4} className="vintage-input" placeholder="Write your message here..."></textarea>
-            </div>
-            
-            <button type="button" className="vintage-button">SEND DISPATCH</button>
-          </form>
+
+            {isSuccess ? (
+              <div style={{ textAlign: 'center', padding: '1.5rem 0', fontFamily: 'var(--font-serif)', fontWeight: 700, color: '#121212', fontSize: '0.9rem' }}>
+                ✓ DISPATCH RECEIVED. WE WILL SOON COMPLY.
+              </div>
+            ) : (
+              <form className="vintage-form" ref={formRef} onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <input 
+                  type="text" 
+                  name="nama" 
+                  className="vintage-input" 
+                  placeholder="Your Name / Organization" 
+                  required 
+                  style={{ border: '1px solid #121212', padding: '0.65rem', background: 'transparent', fontFamily: 'var(--font-sans)', color: '#121212', fontSize: '0.85rem' }}
+                />
+
+                <input 
+                  type="email" 
+                  name="email" 
+                  className="vintage-input" 
+                  placeholder="your.email@agency.com" 
+                  required 
+                  style={{ border: '1px solid #121212', padding: '0.65rem', background: 'transparent', fontFamily: 'var(--font-sans)', color: '#121212', fontSize: '0.85rem' }}
+                />
+                
+                <textarea 
+                  name="isi_email" 
+                  rows={4} 
+                  className="vintage-input" 
+                  placeholder="Write your gig offer or project inquiry here..." 
+                  required 
+                  style={{ border: '1px solid #121212', padding: '0.65rem', background: 'transparent', fontFamily: 'var(--font-sans)', color: '#121212', fontSize: '0.85rem', resize: 'vertical' }}
+                ></textarea>
+                
+                <button 
+                  type="submit" 
+                  disabled={isSending}
+                  style={{
+                    background: '#121212',
+                    color: '#ffffff',
+                    border: 'none',
+                    padding: '0.85rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
+                    textTransform: 'uppercase',
+                    cursor: isSending ? 'not-allowed' : 'pointer',
+                    opacity: isSending ? 0.7 : 1,
+                    transition: 'opacity 0.2s ease',
+                    marginTop: '0.25rem'
+                  }}
+                  onMouseEnter={(e) => { if (!isSending) e.currentTarget.style.opacity = '0.85'; }}
+                  onMouseLeave={(e) => { if (!isSending) e.currentTarget.style.opacity = '1'; }}
+                >
+                  {isSending ? 'SENDING...' : 'DISPATCH INQUIRY'}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
         
         <div className="classified-ad">
           <div className="ad-header">NOTICES & ANNOUNCEMENTS</div>
           <ul className="notices-list">
             <li>
-              <strong>GITHUB REPOSITORY</strong> - An extensive collection of open-source contributions and private projects available for review. 
-              <br/><a href="#">github.com/fadjri-portfolio</a>
+              <strong>GITHUB ARCHIVE</strong> - Central index of open-source software, fullstack architectures, and production-ready mobile repos.
+              <br/><a href="https://github.com/Fdjri" target="_blank" rel="noopener noreferrer">github.com/Fdjri</a>
             </li>
             <li>
-              <strong>LINKEDIN PROFILE</strong> - Professional history, endorsements, and educational background documented here.
-              <br/><a href="#">linkedin.com/in/fadjri-portfolio</a>
+              <strong>LINKEDIN NETWORK</strong> - Formal engineering identity, academic milestones at Universitas Brawijaya, and certified core competencies.
+              <br/><a href="https://www.linkedin.com/in/sholihul-fadjri-triwibowo-220480289/?locale=en_US" target="_blank" rel="noopener noreferrer">linkedin.com/in/sholihul-fadjri</a>
             </li>
             <li>
-              <strong>TWITTER / X</strong> - Daily musings on web development, UI/UX design, and technology trends.
-              <br/><a href="#">@fadjri_dev</a>
+              <strong>INSTAGRAM DISPATCH</strong> - Direct social node for casual updates, instant peer networking, and immediate DM inquiries.
+              <br/><a href="https://www.instagram.com/fdjritw/" target="_blank" rel="noopener noreferrer">instagram.com/fdjritw</a>
+            </li>
+            <li>
+              <strong>YOUTUBE BROADCAST</strong> - Visual video documentation tracking technical project breakdowns and my software engineering journey.
+              <br/><a href="https://www.youtube.com/@fdjritw" target="_blank" rel="noopener noreferrer">youtube.com/@fdjritw</a>
             </li>
           </ul>
         </div>
         
-        <div className="classified-ad small-ad">
-          <div className="ad-header">FOR HIRE</div>
-          <p className="ad-body text-justify">
-            Dedicated engineer ready to bring your ideas to life. Specialized in performant web applications. Rates available upon request. Contact via the form on the left.
-          </p>
-        </div>
-        
-        <div className="classified-ad small-ad">
-          <div className="ad-header">LOST & FOUND</div>
-          <p className="ad-body text-justify">
-            FOUND: One passion for pixel-perfect design. Lost in the world of backend algorithms, now fully recovered and integrated into full-stack development.
-          </p>
+        <div className="classified-stack" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div 
+            className="classified-ad small-ad" 
+            style={{ height: 'fit-content', cursor: 'pointer' }}
+            onClick={() => setActiveGigType('laravel-flutter-pro')}
+          >
+            <div className="ad-header">FOR HIRE</div>
+            <p className="ad-body text-justify" style={{ marginBottom: 0 }}>
+              PRODUCTION-READY LARAVEL/FLUTTER DEV FOR HIRE — Relational database mastery, clean state architectures. Fast deployment guaranteed. No junior hand-holding required.
+            </p>
+          </div>
+          
+          <div className="classified-ad small-ad" style={{ height: 'fit-content' }}>
+            <div className="ad-header">LOST & FOUND</div>
+            <p className="ad-body text-justify" style={{ marginBottom: 0 }}>
+              FOUND: One passion for pixel-perfect design. Lost in the world of backend algorithms, now fully recovered and integrated into full-stack development.
+            </p>
+          </div>
         </div>
       </div>
     </div>

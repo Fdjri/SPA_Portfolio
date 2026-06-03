@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Fadjri's Portfolio | The New York Times Style",
+  title: "Fadjri's Portfolio",
   description: "A highly polished, responsive Single Page Application (SPA) portfolio with a classic vintage newspaper aesthetic.",
 };
 

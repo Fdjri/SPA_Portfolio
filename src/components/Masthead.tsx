@@ -82,7 +82,7 @@ export default function Masthead() {
           <span>{weather.location}</span>
           <span>&bull;</span>
           <span className="weather-detail">
-            {isLoadingWeather ? 'Fetching weather...' : `${weather.temp}\u00B0C \u2014 ${weather.description} with a 100% chance of clean architecture`}
+            {isLoadingWeather ? 'Fetching weather...' : `${weather.temp}\u00B0C \u2014 ${weather.description} `}
           </span>
         </div>
         <div className="date-display">{currentDate || '...'}</div>

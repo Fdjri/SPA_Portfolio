@@ -31,25 +31,25 @@ export default function Editorial() {
       
       <div className="editorial-content">
         <div className="editorial-column main-op-ed">
-          <h3 className="op-ed-title">The Philosophy of Clean Code</h3>
+          <h3 className="op-ed-title">The JavaScript Fatigue vs. Relational Sanity</h3>
           <div className="byline">Opinion by Fadjri</div>
           
           <div className="text-justify">
             <p className="drop-cap">
-              In the sprawling landscape of modern software engineering, there exists a profound temptation 
-              to prioritize speed over elegance. Yet, true craftsmanship lies in the meticulous architecting of code 
-              that not only functions but reads like prose.
+              It has become a peculiar modern tragedy that developers today will eagerly over-engineer a simple 
+              landing page with cascading React state managers, only to wonder why their application collapses 
+              under the weight of its own dependency array. We live in an era where shipping a "Hello World" 
+              requires a bundler, a transpiler, and a prayer.
             </p>
             <p>
-              I began my journey as a developer with a simple belief: user interfaces should not merely display data; 
-              they should communicate it. This portfolio is an expression of that belief—a deliberate choice to step away 
-              from the ubiquitous, generic layouts that populate the web, and instead embrace a classic, 
-              typographically driven aesthetic.
+              In stark contrast, true engineering peace of mind is found in the absolute, uncompromising monolithic 
+              reliability of Laravel. There is a profound relational sanity in a framework that simply works out 
+              of the box without demanding an advanced degree in component lifecycles.
             </p>
             <p>
-              When I'm not obsessing over the perfect CSS grid alignment or fine-tuning React rendering cycles, 
-              I am usually exploring the latest advancements in web standards, striving to bridge the gap between 
-              engineering constraints and design aspirations.
+              And when it comes to mobile deployment, leave the web wrappers behind. The slick, native-compiled 
+              brilliance of Flutter remains the only serious choice for heavy cross-platform architectures that doesn't 
+              compromise on performance or developer dignity.
             </p>
           </div>
 
@@ -89,12 +89,13 @@ export default function Editorial() {
             <img src="/images/me.webp" alt="Fadjri" className="author-portrait" />
             <h4>About the Author</h4>
             <p className="bio-text text-justify">
-              Fadjri is a specialized Frontend Developer with a keen eye for elite UI/UX design. 
-              With extensive experience in React, Next.js, and modern CSS architectures, Fadjri 
-              focuses on building highly polished, responsive applications. 
+              Fadjri is an IT student developer currently treating Next.js and React as a chaotic playground 
+              in an attempt to escape tutorial hell. Components are regularly being broken, and state management 
+              remains a formidable, confusing adversary.
             </p>
             <p className="bio-text">
-              Based in Jakarta, available for freelance and full-time opportunities.
+              However, make no mistake: when it comes to engineering robust, production-ready Laravel backends 
+              or deploying heavy Flutter cross-platform mobile architectures, the training wheels are completely off.
             </p>
           </div>
         </div>

@@ -7,14 +7,11 @@ import FrontPage from './FrontPage';
 import Editorial from './Editorial';
 import NewsGrid from './NewsGrid';
 import Classifieds from './Classifieds';
-import ProjectDetail from './ProjectDetail';
 import { ProjectData } from '../types';
 
 export default function NewspaperApp() {
-  const [activeProject, setActiveProject] = React.useState<ProjectData | null>(null);
 
   const scrollToSection = (id: string) => {
-    setActiveProject(null); // Return to main view if clicking nav
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
@@ -22,14 +19,6 @@ export default function NewspaperApp() {
       }
     }, 50);
   };
-
-  if (activeProject) {
-    return (
-      <div className="newspaper-app container">
-        <ProjectDetail project={activeProject} onBack={() => setActiveProject(null)} />
-      </div>
-    );
-  }
 
   return (
     <div className="newspaper-app container">
@@ -86,7 +75,7 @@ export default function NewspaperApp() {
         <div className="section-divider"></div>
         
         <section id="projects" className="page-section">
-          <NewsGrid onProjectSelect={setActiveProject} />
+          <NewsGrid />
         </section>
         
         <div className="section-divider"></div>
