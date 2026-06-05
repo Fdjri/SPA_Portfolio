@@ -22,6 +22,25 @@
   margin: 0 auto;
 }
 
+@keyframes inkBleedLoad {
+  0% {
+    filter: blur(8px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.headline-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  animation: inkBleedLoad 1.2s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+  will-change: filter, opacity;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 3fr 2fr;

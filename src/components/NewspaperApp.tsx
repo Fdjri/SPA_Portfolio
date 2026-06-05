@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Masthead from './Masthead';
 import './NewspaperApp.css';
 import FrontPage from './FrontPage';
@@ -8,8 +8,41 @@ import Editorial from './Editorial';
 import NewsGrid from './NewsGrid';
 import Classifieds from './Classifieds';
 import { ProjectData } from '../types';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function NewspaperApp() {
+  const appRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    // Target all horizontal divider lines across the newspaper layout
+    const dividers = gsap.utils.toArray<HTMLElement>(
+      '.section-divider, .divider-thin, .divider-thick, .divider-double, .article-divider, .pd-showcase-divider'
+    );
+    
+    dividers.forEach((divider) => {
+      // Set initial state
+      gsap.set(divider, { 
+        transformOrigin: 'left center', 
+        scaleX: 0 
+      });
+
+      // Create scroll-triggered animation
+      gsap.to(divider, {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: divider,
+          start: 'top 85%',
+          end: 'top 60%',
+          scrub: 1,
+        }
+      });
+    });
+  }, { scope: appRef });
 
   const scrollToSection = (id: string) => {
     setTimeout(() => {
@@ -21,7 +54,7 @@ export default function NewspaperApp() {
   };
 
   return (
-    <div className="newspaper-app container">
+    <div className="newspaper-app container" ref={appRef}>
       <Masthead />
       
       <nav className="newspaper-nav">

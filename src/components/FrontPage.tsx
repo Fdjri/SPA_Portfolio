@@ -29,6 +29,9 @@ const getLangColor = (lang: string) => LANGUAGE_COLORS[lang] || '#121212';
 
 export default function FrontPage() {
   const [languages, setLanguages] = useState<GithubLanguage[]>([]);
+
+  const headlineText = "The Art of Modern Engineering: Balancing Robust Code and Intuitive Design.";
+  const headlineWords = headlineText.split(" ");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,8 +60,19 @@ export default function FrontPage() {
   return (
     <div className="front-page">
       <div className="headline-section">
-        <h1 className="main-headline">
-          The Art of Modern Engineering: Balancing Robust Code and Intuitive Design.
+        <h1 className="main-headline" aria-label={headlineText}>
+          {headlineWords.map((word, index) => (
+            <React.Fragment key={index}>
+              <span
+                className="headline-word"
+                aria-hidden="true"
+                style={{ animationDelay: `${index * 0.12}s` }}
+              >
+                {word}
+              </span>
+              {index < headlineWords.length - 1 ? ' ' : ''}
+            </React.Fragment>
+          ))}
         </h1>
       </div>
       
