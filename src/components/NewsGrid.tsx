@@ -6,6 +6,7 @@ import Link from 'next/link';
 import './NewsGrid.css';
 import FeaturedCarousel from './FeaturedCarousel';
 import BlueprintCarousel from './BlueprintCarousel';
+import { TypewriterText, InkBleedText, SplitLineText } from './AnimatedText';
 
 import { ProjectData, LOCAL_PROJECTS } from '../data/projectsData';
 
@@ -70,19 +71,20 @@ export default function NewsGrid() {
   return (
     <div className="news-grid-section">
       <header className="section-header">
-        <h2>Business & Technology</h2>
+        <TypewriterText as="h2" text="Business & Technology" />
         <div className="divider-thick"></div>
       </header>
 
       <section className="machinery-registry">
-        <h3 className="registry-title">Industrial Machinery & Equipment</h3>
-        <p className="registry-description">
-          A comprehensive registry of heavy machinery and digital instruments currently deployed for the architecture of robust software infrastructure.
-        </p>
+        <InkBleedText as="h3" className="registry-title" text="Industrial Machinery & Equipment" />
+        <SplitLineText
+          className="registry-description"
+          text="A comprehensive registry of heavy machinery and digital instruments currently deployed for the architecture of robust software infrastructure."
+        />
 
         <div className="registry-grid">
           <div className="registry-category">
-            <h4 className="category-name">Mobile Frameworks</h4>
+            <InkBleedText as="h4" className="category-name" text="Mobile Frameworks" />
             <div className="tool-list">
               <div className="tool-item">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" alt="Flutter" className="tool-logo" />
@@ -96,7 +98,7 @@ export default function NewsGrid() {
           </div>
 
           <div className="registry-category">
-            <h4 className="category-name">Web & Backend Systems</h4>
+            <InkBleedText as="h4" className="category-name" text="Web & Backend Systems" />
             <div className="tool-list">
               <div className="tool-item">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel" className="tool-logo" />
@@ -126,7 +128,7 @@ export default function NewsGrid() {
           </div>
 
           <div className="registry-category">
-            <h4 className="category-name">Database Engines</h4>
+            <InkBleedText as="h4" className="category-name" text="Database Engines" />
             <div className="tool-list">
               <div className="tool-item">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" className="tool-logo" />
@@ -144,7 +146,7 @@ export default function NewsGrid() {
           </div>
 
           <div className="registry-category">
-            <h4 className="category-name">Design & Interfaces</h4>
+            <InkBleedText as="h4" className="category-name" text="Design & Interfaces" />
             <div className="tool-list">
               <div className="tool-item">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" className="tool-logo" />
@@ -160,7 +162,7 @@ export default function NewsGrid() {
       {/* 1. Web & Backend Category */}
       <section className="category-section">
         <div className="category-header">
-          <h3 className="category-title">DIGITAL ARCHITECTURE & WEB SYSTEMS</h3>
+          <TypewriterText as="h3" className="category-title" text="DIGITAL ARCHITECTURE & WEB SYSTEMS" />
         </div>
 
         <div className="web-systems-grid">
@@ -175,16 +177,20 @@ export default function NewsGrid() {
                 <React.Fragment key={`left-${index}`}>
                   <article className="text-article">
                     <h4 className="small-headline">
-                      <a href="#" className="headline-link" onClick={(e) => handleCardClick(e, item.id)}>
-                        {project?.title || item.id}
-                      </a>
+                      <InkBleedText
+                        as="a"
+                        href="#"
+                        className="headline-link"
+                        onClick={(e: any) => handleCardClick(e, item.id)}
+                        text={project?.title || item.id}
+                      />
                     </h4>
                     {project?.framework && (
                       <div style={{ fontSize: '0.8rem', color: '#555', fontStyle: 'italic', marginBottom: '8px' }}>
                         {project.framework}
                       </div>
                     )}
-                    <p className="snippet">{item.shortDesc}</p>
+                    <SplitLineText className="snippet" text={item.shortDesc} />
                     <span className="read-more-text" onClick={(e) => handleCardClick(e, item.id)} style={{ cursor: 'pointer' }}>Read More &rarr;</span>
                   </article>
                   {index < 2 && <div className="article-divider"></div>}
@@ -202,18 +208,24 @@ export default function NewsGrid() {
                 style={{ width: '100%', height: 'auto', aspectRatio: 'auto' }}
               />
               <h3 className="featured-headline">
-                <a href="#" className="headline-link" onClick={(e) => handleCardClick(e, 'paudinsani')}>
-                  {LOCAL_PROJECTS['paudinsani']?.title || 'PAUD INSANI Management System'}
-                </a>
+                <InkBleedText
+                  as="a"
+                  href="#"
+                  className="headline-link"
+                  onClick={(e: any) => handleCardClick(e, 'paudinsani')}
+                  text={LOCAL_PROJECTS['paudinsani']?.title || 'PAUD INSANI Management System'}
+                />
               </h3>
               {LOCAL_PROJECTS['paudinsani']?.framework && (
                 <div style={{ fontSize: '0.9rem', color: '#555', fontStyle: 'italic', marginBottom: '12px' }}>
                   {LOCAL_PROJECTS['paudinsani'].framework}
                 </div>
               )}
-              <p className="featured-summary" style={{ flexGrow: 1 }}>
-                An integrated administrative dashboard built to manage student records, financial tuition operations, and daily attendance. The system significantly reduces manual paperwork while providing school administrators with clear, actionable data insights backed by a robust MySQL relational database.
-              </p>
+              <SplitLineText
+                className="featured-summary"
+                style={{ flexGrow: 1 }}
+                text="An integrated administrative dashboard built to manage student records, financial tuition operations, and daily attendance. The system significantly reduces manual paperwork while providing school administrators with clear, actionable data insights backed by a robust MySQL relational database."
+              />
 
               <div style={{ marginTop: 'auto' }}>
                 <div className="border border-dashed border-[#121212] rounded-none bg-white py-3 px-4 flex flex-wrap gap-4 justify-between" style={{ margin: '24px 0' }}>
@@ -235,7 +247,7 @@ export default function NewsGrid() {
                 </div>
 
                 <div className="text-center" style={{ marginTop: '24px', marginBottom: '8px' }}>
-                  <Link 
+                  <Link
                     href="/projects/paudinsani"
                     style={{
                       fontFamily: 'var(--font-serif), serif',
@@ -268,16 +280,20 @@ export default function NewsGrid() {
                 <React.Fragment key={`right-${index}`}>
                   <article className="text-article">
                     <h4 className="small-headline">
-                      <a href="#" className="headline-link" onClick={(e) => handleCardClick(e, item.id)}>
-                        {project?.title || item.id}
-                      </a>
+                      <InkBleedText
+                        as="a"
+                        href="#"
+                        className="headline-link"
+                        onClick={(e: any) => handleCardClick(e, item.id)}
+                        text={project?.title || item.id}
+                      />
                     </h4>
                     {project?.framework && (
                       <div style={{ fontSize: '0.8rem', color: '#555', fontStyle: 'italic', marginBottom: '8px' }}>
                         {project.framework}
                       </div>
                     )}
-                    <p className="snippet">{item.shortDesc}</p>
+                    <SplitLineText className="snippet" text={item.shortDesc} />
                     <span className="read-more-text" onClick={(e) => handleCardClick(e, item.id)} style={{ cursor: 'pointer' }}>Read More &rarr;</span>
                   </article>
                   {index < 2 && <div className="article-divider"></div>}
@@ -291,7 +307,7 @@ export default function NewsGrid() {
       {/* 2. Mobile Apps Category */}
       <section className="category-section">
         <div className="category-header">
-          <h3 className="category-title">MOBILE APPLICATION DISPATCHES</h3>
+          <TypewriterText as="h3" className="category-title" text="MOBILE APPLICATION DISPATCHES" />
         </div>
 
         <div
@@ -322,7 +338,7 @@ export default function NewsGrid() {
                     draggable={false}
                   />
                 </div>
-                <h4 className="mobile-headline">{project?.title || item.id}</h4>
+                <InkBleedText as="h4" className="mobile-headline" text={project?.title || item.id} />
                 <div className="mobile-meta">{project?.framework || 'Mobile Application'}</div>
               </article>
             );
@@ -333,7 +349,7 @@ export default function NewsGrid() {
       {/* 3. Design & Prototypes Category */}
       <section className="category-section">
         <div className="category-header">
-          <h3 className="category-title">INTERFACE BLUEPRINTS & DESIGN</h3>
+          <TypewriterText as="h3" className="category-title" text="INTERFACE BLUEPRINTS & DESIGN" />
         </div>
 
         <BlueprintCarousel />

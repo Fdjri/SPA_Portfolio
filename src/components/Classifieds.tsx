@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import './Classifieds.css';
+import { TypewriterText, SplitLineText } from './AnimatedText';
 
 type GigType = 'react-rookie' | 'laravel-flutter-pro';
 
@@ -56,7 +57,7 @@ export default function Classifieds() {
   return (
     <div className="classifieds-section" style={{ background: 'transparent' }}>
       <header className="classifieds-header">
-        <h2>Classifieds</h2>
+        <TypewriterText as="h2" text="Classifieds" />
         <div className="divider-thick"></div>
       </header>
       
@@ -65,10 +66,12 @@ export default function Classifieds() {
           className="classified-ad contact-form-ad"
           onClick={() => setActiveGigType('react-rookie')}
         >
-          <div className="ad-header">HELP WANTED</div>
-          <p className="ad-body text-justify" style={{ marginBottom: '0.5rem' }}>
-            FRONT-END APPRENTICESHIP & JUNIOR ROLES SOUGHT — Ambitious final-year Information Technology student actively seeking high-velocity front-end exposure to solidify production-level competencies in React and the Next.js paradigm. Currently transitioning core architectural skills from battle-tested monolithic systems (Laravel) and cross-platform mobile engineering (Flutter) into complex component state management. Looking to join engineering squads that value clean programmatic logic over library gatekeeping. Ready to deploy, eager to break things, and built to scale.
-          </p>
+          <TypewriterText as="div" className="ad-header" text="HELP WANTED" />
+          <SplitLineText 
+            className="ad-body text-justify" 
+            style={{ marginBottom: '0.5rem' }} 
+            text="FRONT-END APPRENTICESHIP & JUNIOR ROLES SOUGHT — Ambitious final-year Information Technology student actively seeking high-velocity front-end exposure to solidify production-level competencies in React and the Next.js paradigm. Currently transitioning core architectural skills from battle-tested monolithic systems (Laravel) and cross-platform mobile engineering (Flutter) into complex component state management. Looking to join engineering squads that value clean programmatic logic over library gatekeeping. Ready to deploy, eager to break things, and built to scale." 
+          />
           
           <div style={{
             marginTop: 'auto',
@@ -149,7 +152,7 @@ export default function Classifieds() {
         </div>
         
         <div className="classified-ad">
-          <div className="ad-header">NOTICES & ANNOUNCEMENTS</div>
+          <TypewriterText as="div" className="ad-header" text="NOTICES & ANNOUNCEMENTS" />
           <ul className="notices-list">
             <li>
               <strong>GITHUB ARCHIVE</strong> - Central index of open-source software, fullstack architectures, and production-ready mobile repos.
@@ -176,17 +179,21 @@ export default function Classifieds() {
             style={{ height: 'fit-content', cursor: 'pointer' }}
             onClick={() => setActiveGigType('laravel-flutter-pro')}
           >
-            <div className="ad-header">FOR HIRE</div>
-            <p className="ad-body text-justify" style={{ marginBottom: 0 }}>
-              PRODUCTION-READY LARAVEL/FLUTTER DEV FOR HIRE — Relational database mastery, clean state architectures. Fast deployment guaranteed. No junior hand-holding required.
-            </p>
+            <TypewriterText as="div" className="ad-header" text="FOR HIRE" />
+            <SplitLineText 
+              className="ad-body text-justify" 
+              style={{ marginBottom: 0 }} 
+              text="PRODUCTION-READY LARAVEL/FLUTTER DEV FOR HIRE — Relational database mastery, clean state architectures. Fast deployment guaranteed. No junior hand-holding required." 
+            />
           </div>
           
           <div className="classified-ad small-ad" style={{ height: 'fit-content' }}>
-            <div className="ad-header">LOST & FOUND</div>
-            <p className="ad-body text-justify" style={{ marginBottom: 0 }}>
-              FOUND: One passion for pixel-perfect design. Lost in the world of backend algorithms, now fully recovered and integrated into full-stack development.
-            </p>
+            <TypewriterText as="div" className="ad-header" text="LOST & FOUND" />
+            <SplitLineText 
+              className="ad-body text-justify" 
+              style={{ marginBottom: 0 }} 
+              text="FOUND: One passion for pixel-perfect design. Lost in the world of backend algorithms, now fully recovered and integrated into full-stack development." 
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import './FrontPage.css';
+import { TypewriterText, InkBleedText, SplitLineText } from './AnimatedText';
 
 interface GithubLanguage {
   name: string;
@@ -60,20 +61,11 @@ export default function FrontPage() {
   return (
     <div className="front-page">
       <div className="headline-section">
-        <h1 className="main-headline" aria-label={headlineText}>
-          {headlineWords.map((word, index) => (
-            <React.Fragment key={index}>
-              <span
-                className="headline-word"
-                aria-hidden="true"
-                style={{ animationDelay: `${index * 0.12}s` }}
-              >
-                {word}
-              </span>
-              {index < headlineWords.length - 1 ? ' ' : ''}
-            </React.Fragment>
-          ))}
-        </h1>
+        <InkBleedText 
+          text={headlineText} 
+          className="main-headline" 
+          as="h1" 
+        />
       </div>
       
       <div className="divider-thin"></div>
@@ -81,28 +73,21 @@ export default function FrontPage() {
       <div className="hero-grid">
         <div className="lead-intro text-justify">
           <div className="byline">By FADJRI PORTFOLIO <span>&bull;</span> Exclusive</div>
-          <p className="drop-cap">
-            In an era defined by rapid technological shifts, the distinction between a functional application and a truly 
-            memorable digital experience lies in the subtle equilibrium of engineering and aesthetics. We are witnessing a 
-            renaissance where developers must act as both architects and artists, forging robust backends while crafting 
-            interfaces that resonate with the end user.
-          </p>
-          <p>
-            The modern web demands a departure from generic, bloated frameworks in favor of purposeful, meticulously 
-            designed systems. This portfolio serves as a live manifesto of that ideology. By enforcing a strict monochromatic 
-            palette and classic typographic hierarchy, the focus is entirely restored to the content and the seamless 
-            performance of the underlying infrastructure. 
-          </p>
-          <p>
-            True elegance in programming is found not in the complexity of the solution, but in the clarity of its execution.
-            When a single-page application is engineered to maneuver effortlessly without the visual interruption of page reloads, 
-            it elevates the interaction from a mere utility to a sophisticated, unbroken narrative.
-          </p>
+          <SplitLineText 
+            className="drop-cap" 
+            text="In an era defined by rapid technological shifts, the distinction between a functional application and a truly memorable digital experience lies in the subtle equilibrium of engineering and aesthetics. We are witnessing a renaissance where developers must act as both architects and artists, forging robust backends while crafting interfaces that resonate with the end user." 
+          />
+          <SplitLineText 
+            text="The modern web demands a departure from generic, bloated frameworks in favor of purposeful, meticulously designed systems. This portfolio serves as a live manifesto of that ideology. By enforcing a strict monochromatic palette and classic typographic hierarchy, the focus is entirely restored to the content and the seamless performance of the underlying infrastructure." 
+          />
+          <SplitLineText 
+            text="True elegance in programming is found not in the complexity of the solution, but in the clarity of its execution. When a single-page application is engineered to maneuver effortlessly without the visual interruption of page reloads, it elevates the interaction from a mere utility to a sophisticated, unbroken narrative." 
+          />
         </div>
 
         <aside className="tech-stack-sidebar">
           <div className="sidebar-frame">
-            <h3 className="sidebar-title">Global Codebase Index</h3>
+            <TypewriterText text="Global Codebase Index" className="sidebar-title" as="h3" />
             
             <div className="github-bar-container">
               {loading ? (
@@ -147,9 +132,11 @@ export default function FrontPage() {
               )}
             </ul>
           </div>
-          <figcaption className="asset-caption text-justify">
-            Fig. 1 &mdash; Live dynamic analysis of overall language distribution across all public repository metrics.
-          </figcaption>
+          <SplitLineText 
+            text="Fig. 1 — Live dynamic analysis of overall language distribution across all public repository metrics." 
+            className="asset-caption text-justify" 
+            as="figcaption" 
+          />
         </aside>
       </div>
 
